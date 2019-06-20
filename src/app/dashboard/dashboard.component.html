@@ -2,14 +2,31 @@
   {{item.title}}
 </div> -->
 <section class="cont">
-  <div class="dispCard" fxLayoutGap='20px' *ngFor="let item of [1,2,3,4,5]">
+  <div
+    class="dispCard"
+    fxLayoutGap="20px"
+    *ngFor="let item of data"
+    (click)="get_id(item.id)"
+  >
     <div class="textdes">
-      <span class="title">{{item}}</span>
-      <br />
-      <span>Description</span>
-      <br />
-      <span>Date</span>
+      <h4>
+        <span class="title">{{ item.title }}</span>
+      </h4>
+      <p>
+        <span class="bulle">Date: {{ item.description }}</span>
+      </p>
+      <p>
+        <span class="bulle">Date: {{ item.date }}</span>
+      </p>
+      <p>
+        <span class="bulle">Time: {{ item.time }}</span>
+      </p>
+      <p>
+        <span class="bulle">City: {{ item.city }}</span>
+      </p>
+      <p>
+        <span class="bulle">Event Type: {{ item.genre }}</span>
+      </p>
     </div>
   </div>
-
 </section>
