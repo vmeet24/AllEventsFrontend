@@ -1,3 +1,49 @@
-<p>profile works!{{ userid }}</p>
+<!-- <p>profile works!{{ token }}</p><br/>
+<p>{{uname}}</p> -->
+<div class="titlediv">
+  <h2 class="title">Personal Info</h2>
+</div>
+<div class="container jumbotron sec">
+  <div class="cat">
+    <label class="lab_2">Name </label>
+    <span class="data">{{uname}}</span>
+  </div>
 
-<button (click)="view()">Click</button>
+  <div class="cat">
+    <label class="lab_2">E-mail </label>
+    <span class="data">{{uid}}</span>
+  </div>
+
+  <div class="cat">
+    <label class="lab_2">Phone Number </label>
+    <span class="data">{{umobile}}</span>
+  </div>
+
+  <div class="cat">
+    <label class="lab_2">City </label>
+    <span class="data">{{ucity}}</span>
+  </div>
+  <br/>
+  <div class="btnn">
+      <button class="btn btn-success"><a routerLink="/addEvent">Add A Event</a></button>
+    </div><br/>
+
+  <div class="cat_1">
+    <label class="lab_2" style="padding-left: 10px;">List Of Events</label>
+    <div class="cent">
+      <div class="events"  *ngFor="let item of allevents">
+        <label class="lab"> Title: {{item.title}}</label>
+        <label class="lab"> Date: {{item.date}}</label>
+        <!-- <label class="lab"> Count: {{item.intrestedUser}}</label> -->
+        <button class="btn btn-danger float-lg-right float-md-right float-sm-right btn_1" (click)="deleteEvent(item._id)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="btnn">
+      <button class="btn btn-success">Log Out</button>
+  </div><br/>
+  
+</div>

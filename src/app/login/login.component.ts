@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AppComponent } from "../app.component";
 
+
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -16,19 +17,21 @@ export class LoginComponent implements OnInit {
 
   check() {
     this.http
-      .post("http://192.168.2.3:8000/login", {
+      .post("http://localhost:8000/login", {
         username: this.username,
         password: this.password
       })
       .subscribe(res => {
-        console.log(res);
+        console.log("boss",res);
         this.status = res["token"];
         // alert(res["token"]);
         if (res != 0) {
           alert("Sucessfully Logged In!");
+          document.cookie = "token="+res["token"];
         } else {
           alert("Incorrect Username or Password!");
         }
+        
         // this.keep();
         if (res != 0) {
           window.location.href = "/profile";

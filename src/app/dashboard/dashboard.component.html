@@ -1,32 +1,35 @@
-<!-- <div *ngFor="let item of data">
-  {{item.title}}
-</div> -->
 <section class="cont">
-  <div
-    class="dispCard"
-    fxLayoutGap="20px"
-    *ngFor="let item of data"
-    (click)="get_id(item.id)"
-  >
+  <div class="dispCard" fxLayoutGap="20px" *ngFor="let item of data">
     <div class="textdes">
       <h4>
         <span class="title">{{ item.title }}</span>
       </h4>
-      <p>
-        <span class="bulle">Date: {{ item.description }}</span>
-      </p>
-      <p>
+      <div class="data">
         <span class="bulle">Date: {{ item.date }}</span>
-      </p>
-      <p>
+
         <span class="bulle">Time: {{ item.time }}</span>
-      </p>
-      <p>
+      </div>
+      <div class="data">
         <span class="bulle">City: {{ item.city }}</span>
-      </p>
-      <p>
+
         <span class="bulle">Event Type: {{ item.genre }}</span>
-      </p>
+      </div>
+      <div class="data">
+        <span class="bulle">Description: {{ item.description }}</span>
+      </div>
+
+      <div class="data" *ngFor="let event of intEvent">
+        <div *ngIf="event==item._id; else name">
+          <button (click)="interested(item._id)" id="btn11" disabled>Interested</button>
+        </div>
+        <ng-template #name>
+          <button (click)="interested(item._id)" id="btn11">Interested</button>
+        </ng-template>
+      </div>
+
     </div>
+    <!-- <div>
+        <button [disabled]="buttonDisabled" (click)="buttonDisabled = true">going</button> 
+      </div> -->
   </div>
 </section>

@@ -12,22 +12,26 @@ export class SignupComponent implements OnInit {
   password;
   city;
   status;
+  fullname;
+  mobile;
 
   ngOnInit() {}
 
   signup() {
     this.http
-      .post("http://192.168.2.3:8000/signup", {
+      .post("http://localhost:8000/signup", {
         username: this.username,
         password: this.password,
-        city: this.city
+        city: this.city,
+        name: this.fullname,
+        mobile : this.mobile
       })
       .subscribe(res => {
         this.status = res;
         if (res == 1) {
           alert("Sucessfully Registered!");
         } else {
-          alert("You Have Allready Registered");
+          alert("Existing User : Try Logging In!");
         }
         if (res == 1) {
           window.location.href = "/login";

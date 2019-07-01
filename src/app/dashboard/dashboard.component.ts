@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AppComponent } from "../app.component";
-// import { Globals } from '../Globals';
-// import { currentId } from 'async_hooks';
+import * as jwt_decode from 'jwt-decode';
+
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -10,35 +10,43 @@ import { AppComponent } from "../app.component";
 })
 export class DashboardComponent implements OnInit {
   constructor(private http: HttpClient, private ap: AppComponent) {
-    // this.current_id = globals.role;
+
   }
   data;
   role;
   current_id;
-
-  private changedRole() {
-    // this.globals.role = this.role;
-  }
-  get_id(id) {}
+  userid;
+  disablebtn={};
+  intEvent;
+  useridnew=jwt_decode(document.cookie)['_id'];
   ngOnInit() {
-    this.ap.thedata = "DONE";
-    this.http.get("http://192.168.2.3:8000/get_all_events").subscribe(res => {
-      this.data = res;
-      console.log(res);
-    });
 
-    console.log(this.ap.thedata);
+    this.userid=jwt_decode(document.cookie)['_id'];
+    this.http.post("http://localhost:8000/get_all_events",{userid:this.userid}).subscribe(res => {
+      this.data = res["result1"];
+      this.intEvent = res["intEvent"];
+      console.log(this.data);
+      console.log(this.intEvent);
+    
+});
+
+  
+  }
+   interested(e)
+  {
+    // let x=<HTMLInputElement>document.getElementById("btn");
+    // x.disabled=true;
+    this.userid=jwt_decode(document.cookie)['_id'];
+    console.log(this.userid);
+    
+    console.log(e);
+    this.http.post("http://localhost:8000/intrested_user",{eventid:e,userid : this.userid}).subscribe(res=>{
+    console.log(res);
+      
+    })
   }
 }
 
-// export class Id {
-//   sid;
-//   get_id(id) {
-//     this.sid = id;
-//   }
 
-//   get Value() {
-//     return this.sid;
-//   }
 
 // }
